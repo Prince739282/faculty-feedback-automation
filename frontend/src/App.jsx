@@ -1,15 +1,18 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 function App() {
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <h1 className="text-4xl font-bold text-blue-700">
-        Faculty Feedback Automation</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<h1>Faculty Feedback Automation</h1>} />
+        <Route path="/login" element={<h1>Login Page</h1>} />
+        <Route path="/register" element={<h1>Register Page</h1>} />
+        <Route path="/admin" element={<h1>Admin Dashboard</h1>} />
+        <Route path="/student" element={<h1>Student Dashboard</h1>} />
+        <Route path="/faculty" element={<h1>Faculty Dashboard</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
