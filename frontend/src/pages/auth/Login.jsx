@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("Student");
+
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    console.log(email, password);
+    if (role === "Student") {
+      navigate("/student");
+    } else if (role === "Faculty") {
+      navigate("/faculty");
+    } else if (role === "Admin") {
+      navigate("/admin");
+    }
   };
 
   return (
@@ -22,7 +31,6 @@ function Login() {
 
         <form onSubmit={handleLogin}>
           <label>Email Address</label>
-
           <input
             type="email"
             value={email}
@@ -33,15 +41,25 @@ function Login() {
           />
 
           <label>Password</label>
-
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
             required
-            className="w-full border p-3 rounded-lg mt-2 mb-5"
+            className="w-full border p-3 rounded-lg mt-2 mb-4"
           />
+
+          <label>Select Role</label>
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full border p-3 rounded-lg mt-2 mb-5"
+          >
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Admin">Admin</option>
+          </select>
 
           <button
             type="submit"
